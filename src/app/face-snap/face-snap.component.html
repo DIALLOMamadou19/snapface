@@ -1,0 +1,16 @@
+<!--
+     La string interpolation est la méthode la plus simple pour afficher
+     le contenu d'une variable dans le template. Il suffit de mettre le nom
+     de la variable à afficher entre doubles accolades{{ }} dans le HTML.
+
+     L'attribute binding permet de lier la valeur d'une propriété TypeScript 
+     à un attribut HTML, en mettant l'attribut entre crochets  []  
+     et en passant le nom de la propriété.
+-->
+<div class="face-snap-card">
+    <h2>{{title}}</h2>
+    <img [src]="imageUrl" [alt]="title">
+    <p>{{description}}</p>
+    <p>FaceSnap created at {{createdAt}}</p>
+    <p>❤️ {{snaps}}</p>
+</div>

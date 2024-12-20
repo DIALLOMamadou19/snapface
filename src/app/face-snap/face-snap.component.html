@@ -11,14 +11,23 @@
      Pour lier une méthode à un événement d'un élément du template, 
      mettez l'événement entre parenthèses  ()  et passez la méthode en 
      argument ; ex. : (click)="onClickButton()". template -> TS
+
+     Ajouter un control flow block  @if  dit à Angular d'ajouter ou non 
+     son contenu selon la condition que vous lui passez, 
+     par exemple  @if (size === 'large')
 -->
 <div class="face-snap-card">
     <h2>{{faceSnap.title}}</h2>
+    @if (faceSnap.location) {
+    <p>Location : {{faceSnap.location}}</p>
+    }@else {
+    <p>Location undefined</p>
+    }
     <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title">
     <p>{{faceSnap.description}}</p>
     <p>FaceSnap created at {{faceSnap.createdAt}}</p>
     <p>
         <button (click)="onSnap()">{{buttonText}}</button>
-         {{faceSnap.snaps}} ❤️
+        {{faceSnap.snaps}} ❤️
     </p>
 </div>

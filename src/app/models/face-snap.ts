@@ -4,6 +4,11 @@
 //Une propriété personnalisée est rendue injectable depuis l'extérieur 
 // grâce au décorateur  @Input()
 export class FaceSnap {
+    //cette proprietée est optionnelle 
+    // car elle est declaree avec un point d'interrogation. 
+    // elle peut etre undefined
+    location ?: string 
+
     constructor(
         public title: string,
         public description: string,
@@ -12,10 +17,17 @@ export class FaceSnap {
         public snaps: number) {
 
     }
+
     onAddSnap(): void {
         this.snaps++
     }
+
     onDeleteSnap(): void {
         this.snaps--
+    }
+    
+    //Methode pour ajouter une localisation si il y'en a
+    setLocation(localisation : string) : void {
+        this.location = localisation
     }
 }

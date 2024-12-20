@@ -1,10 +1,11 @@
+import { NgClass, NgStyle } from '@angular/common';
 import { FaceSnap } from './../models/face-snap';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-face-snap',  //balise html personnalisée qu'on utisera pour inserer 
+  selector: 'app-face-snap',  // balise html personnalisée qu'on utisera pour inserer 
   // le contenu html de ce compenent dans d'autre components
-  imports: [], //tableau d'import des dépendances
+  imports: [NgStyle, NgClass], //tableau d'import des dépendances
   templateUrl: './face-snap.component.html', //indique le fichier template
   styleUrl: './face-snap.component.scss' // indique le fichier style du component
 })

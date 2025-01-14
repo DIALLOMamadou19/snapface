@@ -1,7 +1,8 @@
 <!--
      La string interpolation est la méthode la plus simple pour afficher
      le contenu d'une variable dans le template. Il suffit de mettre le nom
-     de la variable à afficher entre doubles accolades{{ }} dans le HTML. TS -> template
+     de la variable à afficher entre doubles accolades{{ }} dans le HTML. 
+     Sens de transfert des données : TS -> template
 
 
      L'attribute binding permet de lier la valeur d'une propriété TypeScript 
@@ -35,11 +36,29 @@
     classes correspondantes s'appliquent.
     Comme vous le savez, on peut "suivre" l'état cliqué ou non du bouton 
     "Oh Snap!" en regardant la variable  userHasSnapped  . On peut donc 
-    dire que la classe  snapped  doit s'ajouter uniquement si  userHasSnapped 
-    est  true 
+    dire que la classe  snapped (du fichier face-snap.component.scss) doit 
+    s'ajouter uniquement si  userHasSnapped est  true 
+
+    Un pipe permet de formater l'affichage d'une donnée sans modifier la 
+    donnée sous-jacente. On ne peut pas les utiliser ailleurs que dans le
+    template, et il est fortement déconseillé de les utiliser ailleurs que
+    dans une string interpolation.
+    Angular fournit trois pipes pour modifier la casse affichée d'une 
+    chaîne de caractères : UpperCasePipe, LowerCasePipe, et TitleCasePipe
+    pour les majuscules, les minuscules et le mélange type "titre".
+    DatePipe permet de formater les dates, et sans configuration fournit 
+    un formatage par défaut. DatePipe fournit des configurations prédéfinies avec des noms comme  
+    short,  longDate  ou  mediumTime.DatePipe permet également de 
+    personnaliser totalement le format d'affichage des dates avec des 
+    chaînes de caractères qui encodent le format souhaité, par exemple  
+    'à HH:mm, le d MMMM yyyy'
+    DecimalPipe (mot-clé  number ) vous permet d'afficher un nombre selon les règles de la locale de l'application.
+    PercentPipe affiche un nombre entre 0 et 1 sous forme de pourcentage, arrondi par défaut à l'entier le plus proche.
+    DecimalPipe et PercentPipe acceptent un argument de configuration sous la forme 'chiffresMinAvantVirgule.chiffresMinAprèsVirgule-chiffresMaxAprèsVirgule' ex. :  '1.0-1'
+    CurrencyPipe facilite l'affichage des montants d'argent, et accepte plusieurs arguments de configuration séparés par des deux-points  :
 -->
 <div class="face-snap-card" [ngClass]="{snapped: userHasSnapped}">
-    <h2>{{faceSnap.title}}</h2>
+    <h2>{{faceSnap.title | uppercase}}</h2>
     @if (faceSnap.location) {
     <p>Location : {{faceSnap.location}}</p>
     }@else {
@@ -47,7 +66,7 @@
     }
     <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title">
     <p>{{faceSnap.description}}</p>
-    <p>FaceSnap created at {{faceSnap.createdAt}}</p>
+    <p>FaceSnap created at {{faceSnap.createdAt | date: 'MMMM dd, YYYY, HH:mm '}}</p>
     <p>
         <button (click)="onSnap()">{{buttonText}}</button>
         <span [ngStyle]="{color : 'rgb(0, ' + faceSnap.snaps + ' ,0)'}">{{faceSnap.snaps}} ❤️</span>

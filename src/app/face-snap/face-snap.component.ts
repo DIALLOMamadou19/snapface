@@ -1,3 +1,4 @@
+import { FaceSnapService } from './../services/face-snaps.service';
 import { DatePipe, NgClass, NgStyle, UpperCasePipe } from '@angular/common';
 import { FaceSnap } from './../models/face-snap';
 import { Component, Input, OnInit } from '@angular/core';
@@ -24,6 +25,8 @@ export class FaceSnapComponent implements OnInit {
   // Pour l'utiliser, votre component doit implémenter l'interface  OnInit
   buttonText !: string
   userHasSnapped !: boolean
+
+  constructor(private faceSnapService : FaceSnapService){}
   //On va maintenant initialiser les quatre propriétés dans la méthode  ngOnInit()
   ngOnInit(): void {
 
@@ -31,7 +34,7 @@ export class FaceSnapComponent implements OnInit {
     this.userHasSnapped = false
   }
 
-  // Methode pour 
+  // Methode pour voir si un image est snapper ou pas et le snap ou le unsnap
   onSnap(): void {
     if (this.userHasSnapped) {
       this.unSnap()
@@ -39,13 +42,17 @@ export class FaceSnapComponent implements OnInit {
       this.snap()
     }
   }
+
+  // Methode pour ajouter un snap
   snap() {
-    this.faceSnap.onAddSnap()
+    this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'snap')
     this.buttonText = 'Oops, UnSnap!'
     this.userHasSnapped = true
   }
+
+  // Methode pour enlever un snap
   unSnap() {
-    this.faceSnap.onDeleteSnap()
+    this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'unSnap')
     this.buttonText = 'Oh, Snap!'
     this.userHasSnapped = false
   }

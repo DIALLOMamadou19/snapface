@@ -1,0 +1,18 @@
+<!-- @Input()  crée comme un attribut HTML auquel on peut lier une valeur,
+  tout comme vous l'avez fait avec l'attribut  src  de l'élément image ! 
+
+  Le control flow block  @for  fonctionne un peu comme une boucle  for...of  , 
+  c'est-à-dire que, dans ce cas de figure, elle va itérer sur le tableau  
+  faceSnaps  et vous exposer l'élément correspondant à chaque itération sous 
+  l'alias  faceSnapElement
+
+  Nous associons ensuite l'élément du tableau à la propriété  faceSnap  du component
+
+  Le paramètre  track  permet à Angular d'identifier les différents éléments du tableau 
+  grâce à une propriété unique — puisque notre modèle FaceSnap n'a pas encore 
+  de propriété  id  , on utilisera le  title  comme propriété unique
+-->
+
+@for (faceSnapElement of faceSnaps; track faceSnapElement.title) {
+    <app-face-snap [faceSnap]="faceSnapElement" />
+    }

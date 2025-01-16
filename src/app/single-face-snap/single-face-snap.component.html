@@ -57,7 +57,19 @@
     DecimalPipe et PercentPipe acceptent un argument de configuration sous la forme 'chiffresMinAvantVirgule.chiffresMinAprèsVirgule-chiffresMaxAprèsVirgule' ex. :  '1.0-1'
     CurrencyPipe facilite l'affichage des montants d'argent, et accepte plusieurs arguments de configuration séparés par des deux-points  :
 -->
-<div class="face-snap-card">
+<div class="face-snap-card" [ngClass]="{snapped: userHasSnapped}">
+    <a routerLink="/facesnaps">Back</a>
     <h2>{{faceSnap.title | uppercase}}</h2>
-   <button (click)="onViewFaceSnap()">VIEW</button>
+    @if (faceSnap.location) {
+    <p>Location : {{faceSnap.location}}</p>
+    }@else {
+    <p>Location undefined</p>
+    }
+    <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title">
+    <p>{{faceSnap.description}}</p>
+    <p>FaceSnap created at {{faceSnap.createdAt | date: 'MMMM dd, YYYY, HH:mm '}}</p>
+    <p>
+        <button (click)="onSnap()">{{buttonText}}</button>
+        <span [ngStyle]="{color : 'rgb(0, ' + faceSnap.snaps + ' ,0)'}">{{faceSnap.snaps}} ❤️</span>
+    </p>
 </div>

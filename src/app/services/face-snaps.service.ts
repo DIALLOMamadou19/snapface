@@ -51,13 +51,19 @@ export class FaceSnapService {
         return [...this.faceSnaps]
     }
 
-    // Methode pour snap un image en récupérant son id 
-    snapFaceSnapById(faceSnapId: string, snapType : SnapType) : void {
+    // Methode pour afficher/récuper un seul faceSnap en récupérant son id
+    getFaceSnapById(faceSnapId: string): FaceSnap{
         const foundFaceSnap = this.faceSnaps.find(faceSnap => faceSnap.id === faceSnapId)
 
         if(!foundFaceSnap){
             throw new Error('FaceSnap not found !')
         }
-        foundFaceSnap.snap(snapType)
+        return foundFaceSnap
+    }
+
+    // Methode pour snap un image en récupérant son id 
+    snapFaceSnapById(faceSnapId: string, snapType : SnapType) : void {
+        const faceSnap = this.getFaceSnapById(faceSnapId)
+        faceSnap.snap(snapType)
     }
 }
